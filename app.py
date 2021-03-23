@@ -11,7 +11,7 @@ app = flask.Flask(__name__)
 
 
 #---------------- firebase database initiate ----------------------------------------------------
-cred = credentials.Certificate("letsupgrade-tinder-api-firebase-adminsdk-t568d-4c59504c9a.json")
+cred = credentials.Certificate("**--letsupgrade-tinder-api-firebase-admins-key-json-file--**")
 firebase_admin.initialize_app(cred)
 # Initiate firestore object
 store = firestore.client()
