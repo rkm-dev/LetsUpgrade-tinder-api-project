@@ -51,6 +51,34 @@ def signUp():
     return jsonify({"uid":uid, "message":msg, "Response":200})
 
 
+@app.route('/updateUser', methods=['POST'])
+def updateUser():
+    msg = ""
+    uid = ""
+    dit_user = {}
+    dit = request.get_json(force=True)
+    msg = "Updating user Details"
+    uid = dit['uid']
+
+    dit_user['name']      = dit['name']
+    dit_user['number']    = dit['number']
+    dit_user['image']     = dit['image']
+    dit_user['descp']     = dit['descp']
+    dit_user['dob']       = dit['dob']
+    dit_user['gender']    = dit['gender']
+    dit_user['passion']   = dit['passion']
+    dit_user['job']       = dit['job']
+    dit_user['email']     = dit['email']
+    dit_user['company']   = dit['company']
+    dit_user['location']  = dit['location']
+    dit_user['createdAt'] = firestore.SERVER_TIMESTAMP
+
+    store.collection("users").document(uid).set(dit_user)
+
+    return jsonify({"uid":uid,"message":msg})
+    
+
+
 #-----app execution---------
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5001, debug=False)
